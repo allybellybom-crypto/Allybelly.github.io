@@ -3,28 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 5. Тестирование браузерных пушей</title>
-    <script src="https://pxl.demo.altcraft.com/ak_container.js?id=NjI0fDQ." ></script>
+
+    <title>Урок 5 — Тестирование браузерных пушей</title>
+
+    <script src="https://pxl.demo.altcraft.com/ak_container.js?id=NjI0fDQ."></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+
+            color: #172033;
+
+            background:
+                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.25), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.22), transparent 35%),
+                linear-gradient(135deg, #eef2ff 0%, #f8fafc 50%, #f5f3ff 100%);
+        }
+
+        .page {
+            width: 100%;
+            max-width: 620px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 48px 42px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 28px;
+
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow:
+                0 25px 70px rgba(30, 41, 59, 0.12),
+                0 8px 25px rgba(99, 102, 241, 0.08);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            text-align: center;
+        }
+
+        /* Декоративное свечение */
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            top: -120px;
+            right: -80px;
+
+            background: #818cf8;
+            border-radius: 50%;
+            opacity: 0.12;
+            filter: blur(10px);
+        }
+
+        .icon {
+            width: 76px;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 24px;
+
+            border-radius: 22px;
+
+            font-size: 36px;
+
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow:
+                0 12px 30px rgba(99, 102, 241, 0.3);
+
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .label {
+            display: inline-block;
+
+            margin-bottom: 14px;
+            padding: 7px 13px;
+
+            border-radius: 999px;
+
+            color: #4f46e5;
+            background: #eef2ff;
+
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+
+            color: #111827;
+
+            font-size: clamp(28px, 5vw, 40px);
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+        }
+
+        .description {
+            max-width: 470px;
+            margin: 0 auto 30px;
+
+            color: #64748b;
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .subscribe-button {
+            position: relative;
+
+            width: 100%;
+            max-width: 360px;
+
+            padding: 17px 28px;
+
+            border: 0;
+            border-radius: 16px;
+
+            color: #ffffff;
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+
+            font: inherit;
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 25px rgba(99, 102, 241, 0.3);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+        }
+
+        .subscribe-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 16px 32px rgba(99, 102, 241, 0.38);
+
+            filter: brightness(1.05);
+        }
+
+        .subscribe-button:active {
+            transform: translateY(0);
+        }
+
+        .subscribe-button:focus-visible {
+            outline: 4px solid rgba(99, 102, 241, 0.2);
+            outline-offset: 3px;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            margin-top: 24px;
+
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+            background: #22c55e;
+
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+        }
+
+        .footer {
+            margin-top: 28px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 36px 22px;
+                border-radius: 24px;
+            }
+
+            .icon {
+                width: 68px;
+                height: 68px;
+                font-size: 32px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-            <script src=https://pxl.demo.altcraft.com/form/js/embed_v1.js></script>
-<iframe src="https://pxl.demo.altcraft.com/form?form=8NJf1mCeuRv75dBenr42Gi74SNPayXfmSwDCPCgztrkqbsakhRQKh3aQzgjL8hfUb2hdiG8E3rTc6TbRea78JVap&iframe=1" frameborder="0" name="ak-form-8NJf1mCeuRv75dBenr42Gi74SNPayXfmSwDCPCgztrkqbsakhRQKh3aQzgjL8hfUb2hdiG8E3rTc6TbRea78JVap" class="ak-form" width="100%" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation"></iframe>
-    <button id="init_sub">Подписаться на уведомления</button> // Кнопка подписки
+    <main class="page">
+        <section class="card">
 
-<script>
-	document.getElementById('init_sub').addEventListener('click', function() { // По клику на кнопку..
-	try {
-		var akPush = new AKPush();
-		akPush.initSubscription() // Покажет форму для подписки
-		}
-	catch (e) {
-		console.log(e); // В случае ошибки выведет сообщение в консоль
-		}
-	});
-</script>
+            <div class="icon">🔔</div>
 
-    <p>Урок 5. Тестирование браузерных пушей</p>
+            <div class="label">Урок 5</div>
+
+            <h1>Тестирование<br>браузерных пушей</h1>
+
+            <p class="description">
+                Проверьте работу браузерных уведомлений.
+                Нажмите кнопку ниже, чтобы запустить форму подписки
+                и разрешить получение push-уведомлений.
+            </p>
+
+            <!-- Кнопка подписки -->
+            <button id="init_sub" class="subscribe-button">
+                🔔&nbsp; Подписаться на уведомления
+            </button>
+
+            <div class="info">
+                <span class="status-dot"></span>
+                <span>Система уведомлений готова</span>
+            </div>
+
+            <div class="footer">
+                Учебная страница · Тестирование Web Push
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('init_sub').addEventListener('click', function () {
+            try {
+                var akPush = new AKPush();
+                akPush.initSubscription();
+            } catch (e) {
+                console.log(e);
+            }
+        });
+    </script>
 
 </body>
 </html>
