@@ -4,37 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Урок 5 — Тестирование браузерных пушей</title>
-
-    <!-- Altcraft Push -->
-    <script src="https://pxl.demo.altcraft.com/ak_container.js?id=NjI0fDQ."></script>
-
-    <!-- Altcraft Form -->
-    <script src="https://pxl.demo.altcraft.com/form/js/embed_v1.js"></script>
+    <title>Тестирование Altcraft Pixel</title>
 
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             min-height: 100vh;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            padding: 30px 16px;
+            padding: 24px;
 
             font-family:
-                Inter,
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
                 Roboto,
-                Helvetica,
                 Arial,
                 sans-serif;
 
@@ -42,179 +33,92 @@
 
             background:
                 radial-gradient(
-                    circle at 10% 10%,
-                    rgba(99, 102, 241, 0.25),
+                    circle at 15% 20%,
+                    rgba(99, 102, 241, 0.18),
                     transparent 35%
                 ),
                 radial-gradient(
-                    circle at 90% 90%,
-                    rgba(168, 85, 247, 0.22),
+                    circle at 85% 80%,
+                    rgba(139, 92, 246, 0.16),
                     transparent 35%
                 ),
-                linear-gradient(
-                    135deg,
-                    #eef2ff 0%,
-                    #f8fafc 50%,
-                    #f5f3ff 100%
-                );
-        }
-
-        .page {
-            width: 100%;
-            max-width: 680px;
+                #f8fafc;
         }
 
         .card {
-            position: relative;
-            overflow: hidden;
+            width: 100%;
+            max-width: 560px;
 
-            padding: 48px 42px;
-
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 30px;
-
-            background: rgba(255, 255, 255, 0.82);
-
-            box-shadow:
-                0 30px 80px rgba(30, 41, 59, 0.14),
-                0 10px 30px rgba(99, 102, 241, 0.08);
-
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        /* Декоративные свечения */
-
-        .card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 240px;
-            height: 240px;
-
-            top: -140px;
-            right: -80px;
-
-            border-radius: 50%;
-
-            background: #818cf8;
-
-            opacity: 0.12;
-
-            filter: blur(15px);
-
-            pointer-events: none;
-        }
-
-        .card::after {
-            content: "";
-
-            position: absolute;
-
-            width: 180px;
-            height: 180px;
-
-            bottom: -120px;
-            left: -70px;
-
-            border-radius: 50%;
-
-            background: #a855f7;
-
-            opacity: 0.08;
-
-            filter: blur(20px);
-
-            pointer-events: none;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
+            padding: 45px 40px;
 
             text-align: center;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(15, 23, 42, 0.1);
         }
 
-        /* Иконка */
-
         .icon {
-            width: 76px;
-            height: 76px;
+            width: 72px;
+            height: 72px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            margin: 0 auto 24px;
+            margin: 0 auto 22px;
 
-            border-radius: 22px;
+            border-radius: 20px;
 
-            font-size: 36px;
+            font-size: 34px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #6366f1,
-                    #8b5cf6
-                );
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #8b5cf6
+            );
 
             box-shadow:
-                0 14px 32px rgba(99, 102, 241, 0.3);
-
-            animation: float 3s ease-in-out infinite;
+                0 12px 28px rgba(99, 102, 241, 0.25);
         }
 
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-
-        /* Бейдж */
-
-        .label {
+        .badge {
             display: inline-block;
 
-            margin-bottom: 14px;
+            margin-bottom: 16px;
 
             padding: 7px 13px;
 
             border-radius: 999px;
 
             color: #4f46e5;
-
             background: #eef2ff;
 
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
 
-            letter-spacing: 0.04em;
             text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
-        /* Заголовок */
-
         h1 {
-            margin-bottom: 16px;
+            margin: 0 0 15px;
 
             color: #111827;
 
-            font-size: clamp(28px, 5vw, 40px);
-            line-height: 1.15;
-
-            letter-spacing: -0.04em;
+            font-size: 32px;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
         }
 
         .description {
-            max-width: 500px;
+            margin: 0 auto 28px;
 
-            margin: 0 auto 30px;
+            max-width: 450px;
 
             color: #64748b;
 
@@ -222,80 +126,30 @@
             line-height: 1.7;
         }
 
-        /* Кнопка */
-
-        .subscribe-button {
-            width: 100%;
-            max-width: 380px;
-
-            padding: 17px 28px;
-
-            border: 0;
-            border-radius: 16px;
-
-            color: #ffffff;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #6366f1,
-                    #7c3aed
-                );
-
-            font: inherit;
-            font-size: 16px;
-            font-weight: 700;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 12px 25px rgba(99, 102, 241, 0.3);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                filter 0.2s ease;
-        }
-
-        .subscribe-button:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 16px 34px rgba(99, 102, 241, 0.4);
-
-            filter: brightness(1.05);
-        }
-
-        .subscribe-button:active {
-            transform: translateY(0);
-        }
-
-        .subscribe-button:focus-visible {
-            outline: 4px solid rgba(99, 102, 241, 0.2);
-            outline-offset: 3px;
-        }
-
-        /* Статус */
-
-        .info {
+        .status {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            gap: 9px;
+            gap: 10px;
 
-            margin-top: 22px;
+            margin: 25px 0;
 
-            color: #94a3b8;
+            padding: 14px 18px;
 
-            font-size: 13px;
+            border-radius: 14px;
+
+            background: #f0fdf4;
+
+            color: #166534;
+
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
-
-            flex-shrink: 0;
+            width: 9px;
+            height: 9px;
 
             border-radius: 50%;
 
@@ -305,256 +159,213 @@
                 0 0 0 4px rgba(34, 197, 94, 0.12);
         }
 
-        /* Разделитель */
+        .button {
+            display: inline-block;
 
-        .divider {
-            display: flex;
-            align-items: center;
-
-            gap: 14px;
-
-            margin: 36px 0 28px;
-
-            color: #94a3b8;
-
-            font-size: 12px;
-            font-weight: 600;
-
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-
-            height: 1px;
-
-            flex: 1;
-
-            background: #e2e8f0;
-        }
-
-        /* Контейнер формы */
-
-        .form-section {
-            text-align: left;
-        }
-
-        .form-title {
-            margin-bottom: 8px;
-
-            color: #1e293b;
-
-            font-size: 20px;
-            font-weight: 700;
-
-            text-align: center;
-        }
-
-        .form-description {
-            margin-bottom: 20px;
-
-            color: #64748b;
-
-            font-size: 14px;
-            line-height: 1.6;
-
-            text-align: center;
-        }
-
-        /*
-         * Обертка iframe.
-         *
-         * Высоту можно увеличить, если форма содержит
-         * больше полей.
-         */
-
-        .form-wrapper {
-            width: 100%;
-
-            overflow: hidden;
-
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-
-            background: #ffffff;
-
-            box-shadow:
-                0 10px 30px rgba(15, 23, 42, 0.06);
-        }
-
-        .ak-form {
-            display: block;
-
-            width: 100%;
-
-            min-height: 470px;
+            padding: 15px 25px;
 
             border: 0;
+            border-radius: 14px;
+
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #7c3aed
+            );
+
+            font-size: 15px;
+            font-weight: 700;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 22px rgba(99, 102, 241, 0.25);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 28px rgba(99, 102, 241, 0.32);
+        }
+
+        .button:active {
+            transform: translateY(0);
         }
 
         .footer {
-            margin-top: 28px;
+            margin-top: 30px;
 
             color: #94a3b8;
 
             font-size: 12px;
-
-            text-align: center;
+            line-height: 1.5;
         }
 
-        /* Телефон */
-
         @media (max-width: 520px) {
-
             body {
                 padding: 16px;
             }
 
             .card {
-                padding: 34px 18px;
-
-                border-radius: 24px;
-            }
-
-            .icon {
-                width: 68px;
-                height: 68px;
-
-                font-size: 32px;
+                padding: 35px 22px;
+                border-radius: 20px;
             }
 
             h1 {
-                font-size: 30px;
+                font-size: 28px;
             }
 
             .description {
                 font-size: 15px;
             }
-
-            .form-wrapper {
-                border-radius: 16px;
-            }
-
-            .ak-form {
-                min-height: 500px;
-            }
         }
     </style>
+
+
+    <!-- ===================================================== -->
+    <!-- START OF ALTCRAFT PIXEL CODE -->
+    <!-- ===================================================== -->
+
+    <script type="text/javascript">
+        !function(){
+            var e={
+                url:"https://pxl.demo.altcraft.com/pixel?k=4jtMs0znxJBtIOxAxAubGED5PnuCQXaubmjAHAFAb41axZT5IQLfp91HVEW46hhg&s=%2Fq9L%2FH5JJ5A%3D",
+                goals:"",
+                value:parseFloat("0"),
+                timeout:parseInt("5000"),
+                after_scroll:JSON.parse("false"),
+                auto_load:JSON.parse("true")
+            },
+            o=function(o,t,n,a){
+                var d=[].concat(o)
+                    .map(function(e){
+                        return encodeURIComponent(e)
+                    })
+                    .join(","),
+
+                    c=encodeURIComponent(String(t||0)),
+                    i=encodeURIComponent(n.matching_mode||""),
+                    r=encodeURIComponent(n.db_id||0),
+                    u=encodeURIComponent(JSON.stringify(n.match||{})),
+                    l=encodeURIComponent(JSON.stringify(n.update||{}));
+
+                setTimeout(function(){
+                    (new Image).src=[
+                        e.url,
+                        "goals="+d,
+                        "value="+c,
+                        "db_id="+r,
+                        "mmode="+i,
+                        "match="+u,
+                        "update="+l
+                    ].join("&")
+                },a)
+            },
+            t=!1,
+
+            n=function(){
+                t||(t=!0,
+
+                e.after_scroll
+                    ? document.addEventListener(
+                        "scroll",
+                        function(){
+                            (window.pageYOffset ||
+                            document.documentElement.scrollTop>0)
+                            &&
+                            o(e.goals,e.value,{},e.timeout)
+                        },
+                        {once:true}
+                    )
+
+                    : e.auto_load &&
+                        o(e.goals,e.value,{},e.timeout)
+                )
+            };
+
+            "complete"===document.readyState ||
+            "interactive"===document.readyState
+                ? n()
+                : window.addEventListener("load",n);
+
+            window.ak_pixel_push=function(e,t,n,a,d,c){
+                var i=[];
+
+                Array.isArray(e)
+                    ? i=e
+                    : i[0]=e;
+
+                o(
+                    i,
+                    t,
+                    {
+                        match:n,
+                        update:a,
+                        matching_mode:d,
+                        db_id:c
+                    },
+                    0
+                )
+            }
+        }();
+    </script>
+
+    <!-- ===================================================== -->
+    <!-- END OF ALTCRAFT PIXEL CODE -->
+    <!-- ===================================================== -->
+
 </head>
+
 
 <body>
 
-<main class="page">
+    <main class="card">
 
-    <section class="card">
-
-        <div class="content">
-
-            <!-- Иконка -->
-            <div class="icon">
-                🔔
-            </div>
-
-            <!-- Бейдж -->
-            <div class="label">
-                Урок 5
-            </div>
-
-            <!-- Заголовок -->
-            <h1>
-                Тестирование<br>
-                браузерных пушей
-            </h1>
-
-            <p class="description">
-                Проверьте работу браузерных уведомлений.
-                Подпишитесь на push-уведомления и протестируйте
-                отправку сообщений прямо в браузере.
-            </p>
-
-            <!-- Кнопка Push -->
-            <button
-                id="init_sub"
-                class="subscribe-button"
-                type="button"
-            >
-                🔔&nbsp; Подписаться на уведомления
-            </button>
-
-            <!-- Статус -->
-            <div class="info">
-                <span class="status-dot"></span>
-                <span>Система уведомлений готова</span>
-            </div>
-
-            <!-- Разделитель -->
-            <div class="divider">
-                Форма подписки
-            </div>
-
-            <!-- Форма Altcraft -->
-            <div class="form-section">
-
-                <h2 class="form-title">
-                    Оставьте свои данные
-                </h2>
-
-                <p class="form-description">
-                    Заполните форму ниже, чтобы продолжить тестирование.
-                </p>
-
-                <div class="form-wrapper">
-
-                    <iframe
-                        src="https://pxl.demo.altcraft.com/form?form=8NJf1mCeuRv75dBenr42Gi74SNPayXfmSwDCPCgztrkqbsakhRQKh3aQzgjL8hfUb2hdiG8E3rTc6TbRea78JVap&iframe=1"
-                        frameborder="0"
-                        name="ak-form-8NJf1mCeuRv75dBenr42Gi74SNPayXfmSwDCPCgztrkqbsakhRQKh3aQzgjL8hfUb2hdiG8E3rTc6TbRea78JVap"
-                        class="ak-form"
-                        width="100%"
-                        sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation"
-                        title="Форма подписки"
-                    ></iframe>
-
-                </div>
-
-            </div>
-
-            <div class="footer">
-                Учебная страница · Тестирование Web Push
-            </div>
-
+        <div class="icon">
+            📊
         </div>
 
-    </section>
+        <div class="badge">
+            Altcraft Pixel
+        </div>
 
-</main>
+        <h1>
+            Страница тестирования
+        </h1>
 
+        <p class="description">
+            Эта страница используется для проверки работы
+            браузерного пикселя Altcraft и отслеживания
+            посещений.
+        </p>
 
-<script>
-    /*
-     * Подписка на браузерные push-уведомления
-     */
+        <div class="status">
+            <span class="status-dot"></span>
+            <span>Пиксель установлен и загружен</span>
+        </div>
 
-    document
-        .getElementById('init_sub')
-        .addEventListener('click', function () {
+        <button
+            class="button"
+            type="button"
+            onclick="alert('Событие отправлено')"
+        >
+            Тестировать событие
+        </button>
 
-            try {
+        <div class="footer">
+            Тестовая страница · Altcraft Pixel
+        </div>
 
-                var akPush = new AKPush();
-
-                akPush.initSubscription();
-
-            } catch (e) {
-
-                console.log(e);
-
-            }
-
-        });
-</script>
+    </main>
 
 </body>
 </html>
