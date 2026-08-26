@@ -1,27 +1,194 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Тестирование Altcraft Pixel</title>
 
+
+    <!-- ===================================================== -->
+    <!-- ALTCRAFT PIXEL                                       -->
+    <!-- ===================================================== -->
+
+    <script type="text/javascript">
+
+        !function(){
+
+            var e = {
+                url: "https://pxl.demo.altcraft.com/pixel?k=4jtMs0znxJBtIOxAxAubGED5PnuCQXaubmjAHAFAb41axZT5IQLfp91HVEW46hhg&s=%2Fq9L%2FH5JJ5A%3D",
+
+                goals: "pageView",
+
+                value: parseFloat("0"),
+
+                timeout: parseInt("5000"),
+
+                after_scroll: JSON.parse("false"),
+
+                auto_load: JSON.parse("true")
+            },
+
+
+            o = function(o,t,n,a){
+
+                var d = [].concat(o)
+                    .map(function(e){
+                        return encodeURIComponent(e)
+                    })
+                    .join(","),
+
+                    c = encodeURIComponent(String(t || 0)),
+
+                    i = encodeURIComponent(
+                        n.matching_mode || ""
+                    ),
+
+                    r = encodeURIComponent(
+                        n.db_id || 0
+                    ),
+
+                    u = encodeURIComponent(
+                        JSON.stringify(n.match || {})
+                    ),
+
+                    l = encodeURIComponent(
+                        JSON.stringify(n.update || {})
+                    );
+
+
+                setTimeout(function(){
+
+                    (new Image).src = [
+                        e.url,
+                        "goals=" + d,
+                        "value=" + c,
+                        "db_id=" + r,
+                        "mmode=" + i,
+                        "match=" + u,
+                        "update=" + l
+                    ].join("&");
+
+                }, a);
+
+            },
+
+
+            t = false,
+
+
+            n = function(){
+
+                t || (
+
+                    t = true,
+
+                    e.after_scroll
+
+                        ? document.addEventListener(
+                            "scroll",
+                            function(){
+
+                                (
+                                    window.pageYOffset ||
+                                    document.documentElement.scrollTop > 0
+                                )
+
+                                && o(
+                                    e.goals,
+                                    e.value,
+                                    {},
+                                    e.timeout
+                                );
+
+                            },
+                            { once: true }
+                        )
+
+                        : e.auto_load &&
+                            o(
+                                e.goals,
+                                e.value,
+                                {},
+                                e.timeout
+                            )
+                );
+
+            };
+
+
+            "complete" === document.readyState ||
+            "interactive" === document.readyState
+
+                ? n()
+
+                : window.addEventListener(
+                    "load",
+                    n
+                );
+
+
+            window.ak_pixel_push = function(
+                e,
+                t,
+                n,
+                a,
+                d,
+                c
+            ){
+
+                var i = [];
+
+                Array.isArray(e)
+                    ? i = e
+                    : i[0] = e;
+
+                o(
+                    i,
+                    t,
+                    {
+                        match: n,
+                        update: a,
+                        matching_mode: d,
+                        db_id: c
+                    },
+                    0
+                );
+
+            };
+
+        }();
+
+    </script>
+
+
+    <!-- ===================================================== -->
+    <!-- СТИЛИ                                                -->
+    <!-- ===================================================== -->
+
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             min-height: 100vh;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 24px;
+            padding: 30px 16px;
 
             font-family:
+                Inter,
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
@@ -33,302 +200,675 @@
 
             background:
                 radial-gradient(
-                    circle at 15% 20%,
+                    circle at 10% 10%,
                     rgba(99, 102, 241, 0.18),
-                    transparent 35%
+                    transparent 32%
                 ),
+
                 radial-gradient(
-                    circle at 85% 80%,
-                    rgba(139, 92, 246, 0.16),
-                    transparent 35%
+                    circle at 90% 90%,
+                    rgba(139, 92, 246, 0.15),
+                    transparent 32%
                 ),
+
                 #f8fafc;
+
         }
 
-        .card {
-            width: 100%;
-            max-width: 560px;
 
-            padding: 45px 40px;
+        .container {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            margin: 0 auto;
+
+        }
+
+
+        /* HEADER */
+
+        .header {
+
+            margin-bottom: 20px;
 
             text-align: center;
 
-            background: rgba(255, 255, 255, 0.9);
-
-            border: 1px solid #e5e7eb;
-            border-radius: 24px;
-
-            box-shadow:
-                0 20px 60px rgba(15, 23, 42, 0.1);
         }
 
+
         .icon {
+
             width: 72px;
             height: 72px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            margin: 0 auto 22px;
+            margin: 0 auto 18px;
 
             border-radius: 20px;
 
             font-size: 34px;
 
-            background: linear-gradient(
-                135deg,
-                #6366f1,
-                #8b5cf6
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+                );
 
             box-shadow:
-                0 12px 28px rgba(99, 102, 241, 0.25);
+                0 14px 30px rgba(
+                    99,
+                    102,
+                    241,
+                    0.25
+                );
+
         }
 
+
         .badge {
+
             display: inline-block;
 
-            margin-bottom: 16px;
+            padding: 6px 12px;
 
-            padding: 7px 13px;
+            margin-bottom: 12px;
 
             border-radius: 999px;
 
-            color: #4f46e5;
             background: #eef2ff;
 
+            color: #4f46e5;
+
             font-size: 12px;
+
             font-weight: 700;
 
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+
+            letter-spacing: .08em;
+
         }
 
+
         h1 {
-            margin: 0 0 15px;
+
+            margin: 0 0 10px;
+
+            font-size: 32px;
+
+            line-height: 1.2;
+
+            letter-spacing: -.035em;
 
             color: #111827;
 
-            font-size: 32px;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
         }
 
-        .description {
-            margin: 0 auto 28px;
 
-            max-width: 450px;
+        .subtitle {
+
+            margin: 0 auto;
+
+            max-width: 580px;
 
             color: #64748b;
 
             font-size: 16px;
-            line-height: 1.7;
+
+            line-height: 1.6;
+
         }
 
+
+        /* CARD */
+
+        .card {
+
+            margin-top: 20px;
+
+            padding: 28px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 22px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.92
+            );
+
+            box-shadow:
+                0 15px 45px rgba(
+                    15,
+                    23,
+                    42,
+                    0.08
+                );
+
+        }
+
+
+        /* STATUS */
+
         .status {
+
             display: flex;
+
             align-items: center;
-            justify-content: center;
 
-            gap: 10px;
+            gap: 14px;
 
-            margin: 25px 0;
+            padding: 18px;
 
-            padding: 14px 18px;
-
-            border-radius: 14px;
+            border-radius: 16px;
 
             background: #f0fdf4;
 
-            color: #166534;
+            border: 1px solid #bbf7d0;
 
-            font-size: 14px;
-            font-weight: 600;
         }
 
+
         .status-dot {
-            width: 9px;
-            height: 9px;
+
+            width: 12px;
+            height: 12px;
+
+            flex-shrink: 0;
 
             border-radius: 50%;
 
             background: #22c55e;
 
             box-shadow:
-                0 0 0 4px rgba(34, 197, 94, 0.12);
+                0 0 0 5px rgba(
+                    34,
+                    197,
+                    94,
+                    0.12
+                );
+
+            animation: pulse 2s infinite;
+
         }
 
-        .button {
-            display: inline-block;
 
-            padding: 15px 25px;
+        @keyframes pulse {
+
+            0% {
+                box-shadow:
+                    0 0 0 0 rgba(
+                        34,
+                        197,
+                        94,
+                        .35
+                    );
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 8px rgba(
+                        34,
+                        197,
+                        94,
+                        0
+                    );
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0 rgba(
+                        34,
+                        197,
+                        94,
+                        0
+                    );
+            }
+
+        }
+
+
+        .status-title {
+
+            color: #166534;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status-text {
+
+            margin-top: 3px;
+
+            color: #4d7c5b;
+
+            font-size: 13px;
+
+        }
+
+
+        /* INFO GRID */
+
+        .section-title {
+
+            margin: 28px 0 14px;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            color: #1e293b;
+
+        }
+
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .info {
+
+            padding: 16px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+        }
+
+
+        .info-label {
+
+            margin-bottom: 7px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .07em;
+
+        }
+
+
+        .info-value {
+
+            color: #1e293b;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+
+        }
+
+
+        .goal {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 5px 9px;
+
+            border-radius: 8px;
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+            font-family: monospace;
+
+            font-size: 13px;
+
+        }
+
+
+        /* URL */
+
+        .url-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .url {
+
+            min-width: 0;
+
+            flex: 1;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            font-family: monospace;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            word-break: break-all;
+
+        }
+
+
+        .copy-button {
+
+            flex-shrink: 0;
+
+            padding: 12px 14px;
 
             border: 0;
+
+            border-radius: 12px;
+
+            background: #e0e7ff;
+
+            color: #4338ca;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .copy-button:hover {
+
+            background: #c7d2fe;
+
+        }
+
+
+        /* EXPLANATION */
+
+        .explain {
+
+            display: grid;
+
+            gap: 10px;
+
+        }
+
+
+        .step {
+
+            display: flex;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+        }
+
+
+        .step-number {
+
+            width: 28px;
+            height: 28px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        .step-text {
+
+            color: #475569;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .step-text strong {
+
+            color: #1e293b;
+
+        }
+
+
+        /* BUTTON */
+
+        .test-button {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px 20px;
+
+            border: 0;
+
             border-radius: 14px;
 
             color: white;
 
-            background: linear-gradient(
-                135deg,
-                #6366f1,
-                #7c3aed
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #7c3aed
+                );
+
+            font: inherit;
 
             font-size: 15px;
-            font-weight: 700;
 
-            text-decoration: none;
+            font-weight: 700;
 
             cursor: pointer;
 
             box-shadow:
-                0 10px 22px rgba(99, 102, 241, 0.25);
+                0 10px 22px rgba(
+                    99,
+                    102,
+                    241,
+                    .25
+                );
 
             transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+                transform .2s ease,
+                box-shadow .2s ease;
+
         }
 
-        .button:hover {
+
+        .test-button:hover {
+
             transform: translateY(-2px);
 
             box-shadow:
-                0 14px 28px rgba(99, 102, 241, 0.32);
+                0 14px 28px rgba(
+                    99,
+                    102,
+                    241,
+                    .32
+                );
+
         }
 
-        .button:active {
+
+        .test-button:active {
+
             transform: translateY(0);
+
         }
+
+
+        /* LOG */
+
+        .log {
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            min-height: 70px;
+
+            border-radius: 12px;
+
+            background: #0f172a;
+
+            color: #94a3b8;
+
+            font-family: monospace;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .log-success {
+
+            color: #86efac;
+
+        }
+
+
+        /* FOOTER */
 
         .footer {
-            margin-top: 30px;
+
+            padding: 22px 0 10px;
+
+            text-align: center;
 
             color: #94a3b8;
 
             font-size: 12px;
-            line-height: 1.5;
+
         }
 
-        @media (max-width: 520px) {
+
+        /* MOBILE */
+
+        @media (max-width: 560px) {
+
             body {
-                padding: 16px;
+
+                padding: 22px 12px;
+
             }
+
 
             .card {
-                padding: 35px 22px;
-                border-radius: 20px;
+
+                padding: 20px;
+
+                border-radius: 18px;
+
             }
+
 
             h1 {
+
                 font-size: 28px;
+
             }
 
-            .description {
-                font-size: 15px;
+
+            .grid {
+
+                grid-template-columns: 1fr;
+
             }
+
+
+            .url-box {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .copy-button {
+
+                width: 100%;
+
+            }
+
         }
+
     </style>
-
-
-    <!-- ===================================================== -->
-    <!-- START OF ALTCRAFT PIXEL CODE -->
-    <!-- ===================================================== -->
-
-    <script type="text/javascript">
-        !function(){
-            var e={
-                url:"https://pxl.demo.altcraft.com/pixel?k=4jtMs0znxJBtIOxAxAubGED5PnuCQXaubmjAHAFAb41axZT5IQLfp91HVEW46hhg&s=%2Fq9L%2FH5JJ5A%3D",
-                goals:"",
-                value:parseFloat("0"),
-                timeout:parseInt("5000"),
-                after_scroll:JSON.parse("false"),
-                auto_load:JSON.parse("true")
-            },
-            o=function(o,t,n,a){
-                var d=[].concat(o)
-                    .map(function(e){
-                        return encodeURIComponent(e)
-                    })
-                    .join(","),
-
-                    c=encodeURIComponent(String(t||0)),
-                    i=encodeURIComponent(n.matching_mode||""),
-                    r=encodeURIComponent(n.db_id||0),
-                    u=encodeURIComponent(JSON.stringify(n.match||{})),
-                    l=encodeURIComponent(JSON.stringify(n.update||{}));
-
-                setTimeout(function(){
-                    (new Image).src=[
-                        e.url,
-                        "goals="+d,
-                        "value="+c,
-                        "db_id="+r,
-                        "mmode="+i,
-                        "match="+u,
-                        "update="+l
-                    ].join("&")
-                },a)
-            },
-            t=!1,
-
-            n=function(){
-                t||(t=!0,
-
-                e.after_scroll
-                    ? document.addEventListener(
-                        "scroll",
-                        function(){
-                            (window.pageYOffset ||
-                            document.documentElement.scrollTop>0)
-                            &&
-                            o(e.goals,e.value,{},e.timeout)
-                        },
-                        {once:true}
-                    )
-
-                    : e.auto_load &&
-                        o(e.goals,e.value,{},e.timeout)
-                )
-            };
-
-            "complete"===document.readyState ||
-            "interactive"===document.readyState
-                ? n()
-                : window.addEventListener("load",n);
-
-            window.ak_pixel_push=function(e,t,n,a,d,c){
-                var i=[];
-
-                Array.isArray(e)
-                    ? i=e
-                    : i[0]=e;
-
-                o(
-                    i,
-                    t,
-                    {
-                        match:n,
-                        update:a,
-                        matching_mode:d,
-                        db_id:c
-                    },
-                    0
-                )
-            }
-        }();
-    </script>
-
-    <!-- ===================================================== -->
-    <!-- END OF ALTCRAFT PIXEL CODE -->
-    <!-- ===================================================== -->
 
 </head>
 
 
 <body>
 
-    <main class="card">
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
 
         <div class="icon">
             📊
@@ -339,33 +879,428 @@
         </div>
 
         <h1>
-            Страница тестирования
+            Тестирование пикселя
         </h1>
 
-        <p class="description">
-            Эта страница используется для проверки работы
-            браузерного пикселя Altcraft и отслеживания
-            посещений.
+        <p class="subtitle">
+            Интерактивная страница для проверки загрузки
+            и отправки событий в Altcraft.
         </p>
 
+    </header>
+
+
+
+    <!-- STATUS -->
+
+    <section class="card">
+
         <div class="status">
-            <span class="status-dot"></span>
-            <span>Пиксель установлен и загружен</span>
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                <div class="status-title">
+                    Пиксель активирован
+                </div>
+
+                <div class="status-text">
+                    Страница загружена, автоматическая
+                    отправка события включена.
+                </div>
+
+            </div>
+
         </div>
+
+
+
+        <!-- CONFIG -->
+
+        <h2 class="section-title">
+            Что сейчас делает пиксель
+        </h2>
+
+
+        <div class="grid">
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Событие
+                </div>
+
+                <div class="info-value">
+
+                    <span class="goal">
+                        ● pageView
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Автозагрузка
+                </div>
+
+                <div class="info-value">
+                    Включена
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Отправка
+                </div>
+
+                <div class="info-value">
+                    При загрузке страницы
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Таймаут
+                </div>
+
+                <div class="info-value">
+                    5000 ms
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Значение
+                </div>
+
+                <div class="info-value">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-label">
+                    Scroll trigger
+                </div>
+
+                <div class="info-value">
+                    Выключен
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- URL -->
+
+        <h2 class="section-title">
+            Куда отправляется запрос
+        </h2>
+
+
+        <div class="url-box">
+
+            <div class="url">
+                https://pxl.demo.altcraft.com/pixel
+            </div>
+
+            <button
+                class="copy-button"
+                onclick="copyPixelUrl()"
+            >
+                Скопировать
+            </button>
+
+        </div>
+
+
+
+        <!-- HOW IT WORKS -->
+
+        <h2 class="section-title">
+            Как это работает
+        </h2>
+
+
+        <div class="explain">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div class="step-text">
+
+                    Страница загружается и запускает
+                    скрипт Altcraft Pixel.
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div class="step-text">
+
+                    Пиксель автоматически формирует
+                    событие <strong>pageView</strong>.
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div class="step-text">
+
+                    Браузер создаёт невидимый объект
+                    <strong>Image</strong> и отправляет
+                    запрос на сервер Altcraft.
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <div class="step-text">
+
+                    Запрос содержит цель, значение,
+                    параметры сопоставления и данные
+                    обновления, если они переданы.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TEST BUTTON -->
+
+        <h2 class="section-title">
+            Ручное тестирование
+        </h2>
+
+
+        <p style="
+            margin:0;
+            color:#64748b;
+            font-size:13px;
+            line-height:1.6;
+        ">
+
+            Эта кнопка отправляет дополнительное
+            событие <strong>testClick</strong> через
+            функцию <code>ak_pixel_push()</code>.
+
+        </p>
+
 
         <button
-            class="button"
-            type="button"
-            onclick="alert('Событие отправлено')"
+            class="test-button"
+            onclick="sendTestEvent()"
         >
-            Тестировать событие
+            🚀 Отправить тестовое событие
         </button>
 
-        <div class="footer">
-            Тестовая страница · Altcraft Pixel
+
+        <div
+            id="log"
+            class="log"
+        >
+            Ожидание события...
+
         </div>
 
-    </main>
+
+    </section>
+
+
+
+    <div class="footer">
+
+        Altcraft Pixel · Тестовая страница
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /*
+     * URL пикселя
+     */
+
+    var pixelUrl =
+        "https://pxl.demo.altcraft.com/pixel?k=4jtMs0znxJBtIOxAxAubGED5PnuCQXaubmjAHAFAb41axZT5IQLfp91HVEW46hhg&s=%2Fq9L%2FH5JJ5A%3D";
+
+
+
+    /*
+     * Показываем в журнале,
+     * что страница загрузилась.
+     */
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            var log =
+                document.getElementById("log");
+
+            log.innerHTML =
+                '<span class="log-success">' +
+                '✓ Pixel script loaded' +
+                '</span><br>' +
+                '✓ Auto-load: true<br>' +
+                '✓ Goal: pageView<br>' +
+                '✓ Request scheduled';
+
+        }
+    );
+
+
+
+    /*
+     * Ручное тестовое событие
+     */
+
+    function sendTestEvent() {
+
+        try {
+
+            if (
+                typeof window.ak_pixel_push ===
+                "function"
+            ) {
+
+                window.ak_pixel_push(
+                    "testClick",
+                    0
+                );
+
+
+                document
+                    .getElementById("log")
+                    .innerHTML =
+                        '<span class="log-success">' +
+                        '✓ testClick отправлен' +
+                        '</span><br>' +
+                        'Цель: testClick<br>' +
+                        'Значение: 0<br>' +
+                        'Метод: ak_pixel_push()';
+
+            } else {
+
+                document
+                    .getElementById("log")
+                    .innerHTML =
+                        '<span style="color:#fca5a5">' +
+                        '✕ ak_pixel_push() недоступен' +
+                        '</span>';
+
+            }
+
+        } catch (error) {
+
+            document
+                .getElementById("log")
+                .innerHTML =
+                    '<span style="color:#fca5a5">' +
+                    '✕ Ошибка: ' +
+                    error.message +
+                    '</span>';
+
+        }
+
+    }
+
+
+
+    /*
+     * Копирование адреса пикселя
+     */
+
+    function copyPixelUrl() {
+
+        navigator.clipboard
+            .writeText(pixelUrl)
+            .then(function() {
+
+                var button =
+                    document.querySelector(
+                        ".copy-button"
+                    );
+
+                button.textContent =
+                    "Скопировано ✓";
+
+                setTimeout(function() {
+
+                    button.textContent =
+                        "Скопировать";
+
+                }, 1800);
+
+            })
+            .catch(function() {
+
+                alert(
+                    "Не удалось скопировать URL"
+                );
+
+            });
+
+    }
+
+
+</script>
+
 
 </body>
 </html>
